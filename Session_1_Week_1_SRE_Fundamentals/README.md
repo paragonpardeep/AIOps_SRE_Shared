@@ -491,9 +491,6 @@ A user clicks the **Login** button:
 | 200 ms        | Healthy |
 | 10 seconds    | Problem |
 
-### Key Question
-
-**Is the application responding quickly?**
 
 ---
 
@@ -516,9 +513,6 @@ Common metrics:
 | 1,000 requests/min  | Normal Load            |
 | 20,000 requests/min | High Load / Peak Event |
 
-### Key Question
-
-**How much load is the system handling?**
 
 ---
 
@@ -544,9 +538,6 @@ Out of 1,000 requests:
 
 Error Rate = 0.5%
 
-### Key Question
-
-**Are users experiencing failures?**
 
 ---
 
@@ -571,9 +562,6 @@ Resources include:
 | 30%       | Healthy       |
 | 95%       | Near Capacity |
 
-### Key Question
-
-**Can the system handle more load?**
 
 ---
 
@@ -607,16 +595,7 @@ An SRE can quickly identify that the database is approaching its resource limits
 | Errors        | Measures failed requests      |
 | Saturation    | Measures resource utilization |
 
-## Simple Way to Remember
 
-| Signal     | Question                 |
-| ---------- | ------------------------ |
-| Latency    | Is it fast?              |
-| Traffic    | How much load is coming? |
-| Errors     | Is it working correctly? |
-| Saturation | Can it handle more load? |
-
-These four signals provide a quick and effective way to measure application health, user experience, and overall system reliability.
 
 
 ## Resources to learn more :
