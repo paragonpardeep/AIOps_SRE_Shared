@@ -457,6 +457,167 @@ Before the next session:
 
 These discussion points will be used in the next mentoring session.
 
+---
+
+#### Most important Interview question asked in every SRE interview is below :
+
+# SRE Golden Signals
+
+## Overview
+
+The Four Golden Signals are the most important metrics used by Site Reliability Engineers (SREs) to understand the health and reliability of an application.
+
+They help answer four key questions:
+
+* Is the application fast?
+* How much traffic is coming into the system?
+* Are users experiencing failures?
+* Is the system running out of resources?
+
+---
+
+## 1. Latency
+
+### What is Latency?
+
+Latency measures how long it takes for a system to respond to a request.
+
+### Example
+
+A user clicks the **Login** button:
+
+| Response Time | Status  |
+| ------------- | ------- |
+| 200 ms        | Healthy |
+| 10 seconds    | Problem |
+
+### Key Question
+
+**Is the application responding quickly?**
+
+---
+
+## 2. Traffic
+
+### What is Traffic?
+
+Traffic measures the demand placed on the system.
+
+Common metrics:
+
+* Requests Per Second (RPS)
+* Transactions Per Minute (TPM)
+* Active Users
+
+### Example
+
+| Traffic Volume      | Scenario               |
+| ------------------- | ---------------------- |
+| 1,000 requests/min  | Normal Load            |
+| 20,000 requests/min | High Load / Peak Event |
+
+### Key Question
+
+**How much load is the system handling?**
+
+---
+
+## 3. Errors
+
+### What are Errors?
+
+Errors measure the percentage of requests that fail.
+
+Examples:
+
+* HTTP 5xx Errors
+* API Failures
+* Database Connection Failures
+* Payment Failures
+
+### Example
+
+Out of 1,000 requests:
+
+* Successful Requests = 995
+* Failed Requests = 5
+
+Error Rate = 0.5%
+
+### Key Question
+
+**Are users experiencing failures?**
+
+---
+
+## 4. Saturation
+
+### What is Saturation?
+
+Saturation measures how close a system is to its resource limits.
+
+Resources include:
+
+* CPU
+* Memory
+* Disk
+* Network
+* Database Connections
+
+### Example
+
+| CPU Usage | Status        |
+| --------- | ------------- |
+| 30%       | Healthy       |
+| 95%       | Near Capacity |
+
+### Key Question
+
+**Can the system handle more load?**
+
+---
+
+# E-Commerce Example
+
+Consider an online shopping application:
+
+| Golden Signal | Example                          |
+| ------------- | -------------------------------- |
+| Latency       | Checkout page responds in 300 ms |
+| Traffic       | 20,000 active users              |
+| Errors        | 2% payment failures              |
+| Saturation    | Database CPU at 90%              |
+
+### Analysis
+
+An SRE can quickly identify that the database is approaching its resource limits. If saturation continues to increase, it may result in:
+
+* Increased latency
+* More application errors
+* Poor user experience
+
+---
+
+# Summary
+
+| Golden Signal | Purpose                       |
+| ------------- | ----------------------------- |
+| Latency       | Measures response time        |
+| Traffic       | Measures system demand        |
+| Errors        | Measures failed requests      |
+| Saturation    | Measures resource utilization |
+
+## Simple Way to Remember
+
+| Signal     | Question                 |
+| ---------- | ------------------------ |
+| Latency    | Is it fast?              |
+| Traffic    | How much load is coming? |
+| Errors     | Is it working correctly? |
+| Saturation | Can it handle more load? |
+
+These four signals provide a quick and effective way to measure application health, user experience, and overall system reliability.
+
 
 ## Resources to learn more :
 
