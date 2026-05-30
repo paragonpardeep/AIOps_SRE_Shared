@@ -457,7 +457,11 @@ Before the next session:
 
 These discussion points will be used in the next mentoring session.
 
-Read more here - https://github.com/dastergon/awesome-sre#culture
+
+## Resources to learn more :
+
+Google SRE - https://sre.google/sre-book/table-of-contents/
+Github Repo - https://github.com/dastergon/awesome-sre#culture
 
 
 
