@@ -457,6 +457,10 @@ Before the next session:
 
 These discussion points will be used in the next mentoring session.
 
+Read more here - https://github.com/dastergon/awesome-sre#culture
+
+
+
 
 
 
