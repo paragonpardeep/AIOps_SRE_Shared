@@ -449,24 +449,28 @@ Alerts = Tell me when I need to act
 
 # Bonus: Important Monitoring & SRE Metrics
 
-| Metric                   | Simple Definition                               |
-| ------------------------ | ----------------------------------------------- |
-| Availability             | Percentage of time a service is available       |
-| SLI                      | Actual service performance experienced by users |
-| Error Budget             | Allowed failure before SLO is breached          |
-| Latency                  | Time taken to process a request                 |
-| Traffic (RPS)            | Number of requests per second                   |
-| Error Rate               | Percentage of failed requests                   |
-| CPU Utilization          | Percentage of CPU being used                    |
-| Memory Utilization       | Percentage of Memory being used                 |
-| MTTD                     | Average time to detect incidents                |
-| MTTR                     | Average time to resolve incidents               |
-| MTBF                     | Average uptime between failures                 |
-| Deployment Frequency     | How often code is deployed                      |
-| Lead Time for Changes    | Time from code commit to deployment             |
-| Change Failure Rate      | Percentage of deployments causing issues        |
-| Time to Restore (TTR)    | Time to restore service after an outage         |
-| Incident Recurrence Rate | Percentage of repeated incidents                |
-| Toil Ratio               | Percentage of repetitive manual work            |
-| On-call Page Volume      | Number of alerts during on-call                 |
-| Saturation               | Resource utilization level                      |
+
+
+
+| Metric                   | Simple Definition                                            | Formula                                      | Example Result                  |
+| ------------------------ | ------------------------------------------------------------ | -------------------------------------------- | ------------------------------- |
+| Availability (%)         | Percentage of time a service is available to users.          | (Total Time - Downtime) / Total Time × 100   | 43.2 min downtime/month = 99.9% |
+| SLI                      | Measures actual service performance experienced by users.    | Successful Requests / Total Requests × 100   | 99,900 / 100,000 = 99.9%        |
+| Error Budget             | Amount of acceptable failure allowed by the SLO.             | 100% - SLO                                   | 100 - 99.9 = 0.1%               |
+| Latency                  | Time taken to process a request and return a response.       | Response End Time - Request Start Time       | 500 ms                          |
+| Traffic (RPS)            | Number of requests received per second.                      | Total Requests / Seconds                     | 6000/60 = 100 RPS               |
+| Error Rate               | Percentage of requests that fail.                            | Failed Requests / Total Requests × 100       | 100/100000 = 0.1%               |
+| CPU Utilization          | Percentage of CPU currently being used.                      | Used CPU / Total CPU × 100                   | 70/100 = 70%                    |
+| Memory Utilization       | Percentage of memory currently being used.                   | Used Memory / Total Memory × 100             | 7.2/8 = 90%                     |
+| MTTD                     | Average time taken to detect an incident.                    | Total Detection Time / Incidents             | 50/10 = 5 min                   |
+| MTTR                     | Average time taken to resolve an incident.                   | Total Recovery Time / Incidents              | 300/10 = 30 min                 |
+| MTBF                     | Average time a system runs before experiencing a failure.    | Total Uptime / Failures                      | 720/6 = 120 hrs                 |
+| Deployment Frequency     | How often code is deployed to production.                    | Deployments / Time Period                    | 120/month = 4/day               |
+| Lead Time for Changes    | Time taken from code commit to production deployment.        | Deploy Time - Commit Time                    | 2 hrs                           |
+| Change Failure Rate      | Percentage of deployments that cause incidents or failures.  | Failed Deployments / Total Deployments × 100 | 5/100 = 5%                      |
+| Time to Restore (TTR)    | Time required to restore service after an incident.          | Restore Time - Incident Start Time           | 45 min                          |
+| Incident Recurrence Rate | Percentage of incidents that happen again after being fixed. | Repeated Incidents / Total Incidents × 100   | 5/50 = 10%                      |
+| Toil Ratio               | Percentage of time spent on repetitive manual work.          | Toil Hours / Total Engg Hours × 100          | 100/500 = 20%                   |
+| On-call Page Volume      | Number of alerts received during an on-call shift.           | Total Alerts / Shift                         | 8 alerts/shift                  |
+| Saturation               | How close a resource is to reaching its maximum capacity.    | Used Resource / Total Resource × 100         | CPU 80%, Memory 75%             |
+
