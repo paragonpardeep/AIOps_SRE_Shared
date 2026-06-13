@@ -17,6 +17,38 @@
 
 ---
 
+
+## Most asked question on above topics 
+
+1. What are Metrics, Logs, and Traces?
+
+Answer:
+
+Metrics → Show numbers like CPU, Memory, Response Time.
+Logs → Show detailed events and errors.
+Traces → Show the complete path of a request across services.
+
+Easy Formula:
+
+Metrics = What happened
+Logs = Why it happened
+Traces = Where it happened
+2. What should you monitor in an application?
+
+Answer:
+
+Monitor four key areas:
+
+Infrastructure → CPU, Memory, Disk, Network
+Application → Response Time, Error Rate, Traffic
+Database → Query Performance, Connections, Storage
+Business Metrics → Orders, Payments, User Logins
+
+Interview One-Liner:
+
+"A good monitoring strategy focuses on Infrastructure, Application, Database, and Business Metrics with alerts based on customer impact."
+
+
 # What is Monitoring? (3 mins)
 
 Monitoring means keeping an eye on your systems, applications, and services to ensure everything is working properly.
