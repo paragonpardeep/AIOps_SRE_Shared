@@ -1,206 +1,502 @@
-# SRE Roadmap: 2-Month Mentorship Plan
+# Session 4: Incident Management & Operational Excellence (Interactive)
 
-Welcome to the Site Reliability Engineering (SRE) mentorship program! This comprehensive roadmap is designed to guide you through the essential concepts, skills, and practices needed to excel in the SRE field.
+**Duration:** 45 Minutes
 
----
-
-## 📋 Program Overview
-
-This 8-session mentorship plan covers the fundamental to advanced topics in Site Reliability Engineering, spanning reliability principles, observability, incident management, cloud-native technologies, and career development.
-
-**Duration:** 2 months (8 weeks)  
-**Format:** Interactive mentorship sessions with hands-on learning outcomes
+## Learning Outcome
+By the end of this session, participants will understand how mature organizations detect, manage, communicate, and learn from production incidents.
 
 ---
 
-## 🗂️ Session Breakdown
+# Ice Breaker (2 mins)
 
-### **Session 1: Understanding SRE & Career Roadmap**
-**Week 1**
+Ask participants:
 
-Establish a solid foundation in SRE fundamentals and your personalized growth path.
+1. Have you ever received a production call outside office hours?
+2. What was your first reaction?
+3. Did everyone know what to do?
 
-**Topics:**
-- What is SRE and why organizations adopt it
-- SRE vs DevOps vs Operations
-- Key skills required for an SRE
-- Current market trends and opportunities
-- Personalized roadmap based on current experience
+Transition:
 
-**Outcome:** Clear understanding of the SRE role and growth path.
+> In mature organizations, incidents are expected. What matters is how we respond.
 
 ---
 
-### **Session 2: Reliability Mindset & Service Ownership**
-**Week 2**
+# Real Scenario #1 (Use Throughout Session)
 
-Develop the core mindset that successful SRE teams use to manage service reliability.
+## E-Commerce Checkout Outage
 
-**Topics:**
-- What reliability means from a business perspective
-- Service ownership culture
-- Measuring service health
-- Introduction to SLI, SLO, SLA concepts
-- Real-world reliability examples
+You work for an online shopping company.
 
-**Outcome:** Learn how successful SRE teams think about reliability.
+During a festive sale, thousands of users are trying to place orders.
 
----
+At 8:05 PM, monitoring starts showing:
 
-### **Session 3: Monitoring & Observability Strategy**
-**Week 3**
+```text
+Checkout API Error Rate = 45%
+```
 
-Learn to design and implement effective monitoring strategies for modern systems.
+Customers report:
 
-**Topics:**
-- Building an effective monitoring strategy
-- Metrics, logs, and traces
-- What should be monitored and why
-- Alerting best practices
-- Common mistakes organizations make
+> "Unable to place orders."
 
-**Outcome:** Ability to design a practical monitoring approach.
+Business Team reports:
+
+> Revenue loss is happening every minute.
+
+This will be our primary scenario.
 
 ---
 
-### **Session 4: Incident Management & Operational Excellence**
-**Week 4**
+# Real Scenario #2 (Optional)
 
-Master the processes and practices for handling production incidents professionally.
+## Banking Login Failure
 
-**Topics:**
-- Incident lifecycle
-- Handling production outages
-- Escalation management
-- Communication during incidents
-- Post-incident reviews and learning culture
+At 9:00 AM, employees deploy a new authentication service.
 
-**Outcome:** Understanding of how mature organizations manage incidents.
+At 9:10 AM:
 
----
+- Customers cannot login.
+- Mobile app login fails.
+- Call center volume spikes.
 
-### **Session 5: Kubernetes & Cloud Reliability**
-**Week 5**
+Root Cause:
 
-Explore reliability considerations in cloud-native and containerized environments.
+New deployment exhausted database connections.
 
-**Topics:**
-- Reliability challenges in cloud-native environments
-- Kubernetes from an SRE perspective
-- High availability concepts
-- Scalability considerations
-- Common production issues and lessons learned
-
-**Outcome:** Understand reliability considerations for modern platforms.
+We'll revisit this scenario during mitigation and postmortem.
 
 ---
 
-### **Session 6: Automation & Toil Reduction**
-**Week 6**
+# 1. Incident Lifecycle (10 mins)
 
-Develop automation skills to eliminate repetitive operational work.
+## Definition
 
-**Topics:**
-- What operational toil is
-- Identifying repetitive work
-- Automation opportunities
-- Python and scripting roadmap
-- Building an engineering-first mindset
+**Incident Lifecycle** is the complete journey of an incident from detection until learning and improvement.
 
-**Outcome:** Learn how SREs improve efficiency through automation.
+```text
+Detect → Assess → Respond → Mitigate → Recover → Review
+```
 
----
+### Interactive Question
 
-### **Session 7: Capacity Planning & Resilience**
-**Week 7**
+Ask:
 
-Ensure long-term service sustainability through strategic planning.
+> In our checkout scenario, what was the first sign that something was wrong?
 
-**Topics:**
-- Capacity planning fundamentals
-- Performance and scalability thinking
-- Disaster recovery basics
-- Business continuity concepts
-- Reliability reviews
+Expected Answer:
 
-**Outcome:** Understand long-term service sustainability.
+Monitoring alert / customer complaint.
 
 ---
 
-### **Session 8: SRE Career Growth & Next Steps**
-**Week 8**
+## Phase 1: Detection
 
-Consolidate learning and chart your path forward in SRE and adjacent disciplines.
+### Simple Definition
 
-**Topics:**
-- Review of progress
-- Skill gap analysis
-- SRE interview preparation guidance
-- Certifications and learning recommendations
-- Transitioning towards Platform Engineering and AIOps
+Detection means:
 
-**Outcome:** Clear roadmap for continued career development in SRE and emerging fields.
+> Identifying that something abnormal is happening.
 
----
+### Examples
 
-## 🎯 Key Learning Areas
+- Monitoring alert
+- Customer complaint
+- Service Desk ticket
 
-| Area | Sessions | Focus |
-|------|----------|-------|
-| **Fundamentals** | 1-2 | SRE mindset and reliability principles |
-| **Observability** | 3 | Monitoring and alerting strategy |
-| **Operations** | 4 | Incident management and excellence |
-| **Cloud & Containers** | 5 | Cloud-native reliability |
-| **Automation** | 6 | Engineering-focused efficiency |
-| **Sustainability** | 7 | Capacity planning and resilience |
-| **Career** | 8 | Professional growth and next steps |
+### Checkout Scenario
+
+Dynatrace alert:
+
+```text
+Checkout Error Rate > 40%
+```
+
+Discussion:
+
+> Which tools in your organization detect incidents?
 
 ---
 
-## 📚 Prerequisites
+## Phase 2: Assessment
 
-- Basic understanding of software systems and operations
-- Familiarity with Linux/Unix systems
-- Interest in reliability and operational excellence
-- 2-3 hours per week for mentorship sessions and self-study
+### Definition
 
----
+Assessment means:
 
-## 🚀 Getting Started
+> Understanding impact, severity, and affected systems.
 
-1. **Attend Session 1** to understand your personalized learning path
-2. **Engage actively** in each session with questions and discussions
-3. **Complete hands-on exercises** to reinforce learning
-4. **Document your progress** and track skill development
-5. **Apply learnings** to your current environment where possible
+Questions:
 
----
+- How many users are affected?
+- Is production impacted?
+- Is revenue impacted?
 
-## 💡 How to Use This Roadmap
+### Interactive Exercise
 
-- Follow the sessions sequentially for optimal learning progression
-- Use each session's outcomes to measure understanding
-- Take notes and create case studies from your own experiences
-- Network with peers and share learnings
-- Revisit sessions as needed for deeper understanding
+Ask participants:
+
+> Entire checkout is unavailable during sale. Which severity should be assigned?
+
+Expected:
+
+P1
 
 ---
 
-## 🔗 Resources & Next Steps
+## Phase 3: Response
 
-- Consult your mentor for resource recommendations
-- Explore certifications (e.g., Google Cloud Certified SRE, AWS Certified SysOps)
-- Engage with SRE communities and conferences
-- Build projects to apply your knowledge
+### Definition
+
+Response means:
+
+> Bringing the right people together and starting investigation.
+
+Example Teams:
+
+- SRE
+- Application Team
+- DBA
+- Network Team
+
+Ask:
+
+> Who would you invite first for the checkout failure?
 
 ---
 
-## 📝 Notes
+## Phase 4: Mitigation
 
-This roadmap is a living document. Feel free to customize it based on your background, goals, and organizational context. Your mentor will help tailor each session to your specific needs.
+### Definition
 
-**Happy Learning! 🎓**
+Mitigation means:
+
+> Taking immediate actions to reduce business impact.
+
+Examples:
+
+- Rollback deployment
+- Restart failed service
+- Scale infrastructure
+
+Important:
+
+> Restore first. Investigate later.
+
+Scenario:
+
+Recent deployment happened 5 minutes before failures.
+
+Question:
+
+> Would you rollback immediately?
+
+Discuss.
 
 ---
 
-*Last Updated: 2026-05-30*
+## Phase 5: Recovery
+
+### Definition
+
+Recovery means:
+
+> Ensuring the service is fully healthy and stable.
+
+Verification:
+
+- Alerts cleared
+- Customers successful
+- Dashboards normal
+
+Ask:
+
+> Is restarting the service enough?
+
+Expected:
+
+No. Validation is required.
+
+---
+
+## Phase 6: Review
+
+### Definition
+
+Review means:
+
+> Learning from incidents to prevent recurrence.
+
+---
+
+# 2. Handling Production Outages (10 mins)
+
+## Definition
+
+A production outage is:
+
+> Any event that makes a production service unavailable or unusable.
+
+Examples:
+
+- Website down
+- API unavailable
+- Slow response times
+
+---
+
+## Golden Rule #1
+
+Stay Calm.
+
+Ask:
+
+> What problems can panic create during outages?
+
+Expected:
+
+Wrong decisions, poor communication, mistakes.
+
+---
+
+## Golden Rule #2
+
+Always ask:
+
+```text
+What changed?
+```
+
+Examples:
+
+- New deployment
+- Infrastructure patch
+- Firewall change
+- Certificate renewal
+
+### Scenario
+
+Timeline:
+
+```text
+08:00 Deployment completed
+08:05 Errors started
+```
+
+Question:
+
+> What should be investigated first?
+
+Expected:
+
+Recent deployment.
+
+---
+
+## Golden Rule #3
+
+Use Runbooks.
+
+### Definition
+
+A Runbook is:
+
+> A documented step-by-step recovery procedure.
+
+Example:
+
+```text
+1. Check application health.
+2. Review logs.
+3. Validate database connectivity.
+4. Restart service if required.
+```
+
+Ask:
+
+> Does your team maintain runbooks?
+
+---
+
+# 3. Escalation Management (7 mins)
+
+## Definition
+
+Escalation means:
+
+> Involving additional expertise or management when required.
+
+---
+
+## Functional Escalation
+
+Definition:
+
+> Escalating to technical experts.
+
+Example:
+
+Storage issue → Storage Team.
+
+Interactive Question:
+
+> If Kubernetes worker nodes stop responding, whom will you involve?
+
+---
+
+## Hierarchical Escalation
+
+Definition:
+
+> Informing leadership due to business impact.
+
+Typical escalation:
+
+```text
+Engineer → Lead → Manager → Director
+```
+
+Scenario:
+
+No progress for 20 minutes.
+
+Question:
+
+> Continue troubleshooting alone or escalate?
+
+Expected:
+
+Escalate.
+
+---
+
+# 4. Communication During Incidents (5 mins)
+
+## Definition
+
+Incident communication means:
+
+> Providing timely and accurate updates to stakeholders.
+
+Why important?
+
+Because people become anxious during outages.
+
+---
+
+## Bad Communication
+
+```text
+System broken. Team checking.
+```
+
+## Good Communication
+
+```text
+Customers are unable to place orders.
+
+Engineering teams are actively investigating.
+
+Next update in 15 minutes.
+```
+
+---
+
+## Interactive Activity
+
+Ask participants to rewrite:
+
+```text
+Database issue. No ETA.
+```
+
+into business-friendly language.
+
+---
+
+# 5. Post-Incident Review & Learning Culture (5 mins)
+
+## Definition
+
+A Post-Incident Review (PIR) is:
+
+> A structured meeting to understand what happened and improve systems.
+
+---
+
+## Blameless Culture
+
+Definition:
+
+> Focus on process and system improvements instead of blaming individuals.
+
+Bad:
+
+> John deployed bad code.
+
+Good:
+
+> Deployment validation was missing.
+
+---
+
+## Checkout Scenario Root Cause
+
+Investigation found:
+
+```text
+New release introduced memory leak.
+```
+
+Discussion Questions:
+
+1. Why was issue not caught in testing?
+2. Were alerts sufficient?
+3. Was rollback automated?
+4. What actions should be taken?
+
+---
+
+# Sample Action Items
+
+| Action | Owner |
+|---------|-------|
+| Add memory alerts | SRE Team |
+| Improve load testing | QA Team |
+| Implement canary deployment | DevOps Team |
+| Automate rollback | Platform Team |
+
+---
+
+# Final Group Exercise (5 mins)
+
+Present Scenario:
+
+```text
+A new deployment was completed.
+
+5 minutes later:
+- Error rate increased.
+- Customers unable to login.
+- Revenue impacted.
+```
+
+Ask participants:
+
+1. Severity?
+2. Which teams will join?
+3. First action?
+4. What communication will you send?
+5. When will you escalate?
+
+---
+
+# Key Takeaways
+
+1. Detect quickly.
+2. Restore service first.
+3. Escalate early.
+4. Communicate frequently.
+5. Learn from every incident.
+6. Never blame individuals.
+
+> Mature organizations treat incidents as learning opportunities.
